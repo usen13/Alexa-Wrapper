@@ -1,0 +1,9 @@
+Please extract the contents of the attachment and do the following.
+
+TERMINAL 1#     sudo apt-get install mosquitto mosquitto-clients
+TERMINAL 1#     sudo docker build --tag musicplayer:1.0 .
+TERMINAL 2#     mosquitto -p 30001
+TERMINAL 1#     sudo docker run --device /dev/snd --net="host" --name musicplayer  musicplayer:1.0
+TERMINAL 3#     mosquitto_pub -h "localhost" -p 30001 -q 1 -m '{"action":"STOP"}' -t "swarm/musicplayer"
+TERMINAL 1#     sudo docker rm -f musicplayer
+
